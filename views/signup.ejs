@@ -1,0 +1,72 @@
+<%- include('./shared/header')%>
+
+
+    <section class="container my-5">
+        <div class="signupForm w-75 m-auto">
+            <form action="/signup" method="POST">
+                <% if (userExist==true) { %>
+                    <div class="alert alert-danger my-2">
+                        Email already exist
+                    </div>
+                    <% } %>
+
+                        <% if (catchErr==true) { %>
+                            <div class="alert alert-danger my-2">
+                                Server error
+                            </div>
+                            <% } %>
+
+                                <div class="form-group my-2">
+                                    <input class="form-control" type="text" value="<%= oldInputs?.userName  %>"
+                                        placeholder="UserName" name="userName" />
+                                </div>
+                                <% if (validationErr?.includes('userName')) { %>
+                                    <div class="alert alert-danger my-2">
+                                        in-valid UserName
+                                    </div>
+                                    <% } %>
+                                        <div class="form-group my-2">
+                                            <input class="form-control" type="email" value="<%= oldInputs?.email  %>"
+                                                placeholder="Email" name="email" />
+                                        </div>
+                                        <% if (validationErr?.includes('email')) { %>
+                                            <div class="alert alert-danger my-2">
+                                                in-valid email
+                                            </div>
+                                            <% } %>
+                                                <div class="form-group my-2">
+                                                    <input class="form-control" type="password"
+                                                        value="<%= oldInputs?.password  %>" placeholder="Password"
+                                                        name="password" />
+                                                </div>
+                                                <% if (validationErr?.includes('password')) { %>
+                                                    <div class="alert alert-danger my-2">
+                                                        in-valid password
+                                                    </div>
+                                                    <% } %>
+                                                        <div class="form-group my-2">
+                                                            <input class="form-control" type="password"
+                                                                value="<%= oldInputs?.cPassword  %>"
+                                                                placeholder="Confirmation-Password" name="cPassword" />
+                                                        </div>
+                                                        <% if (validationErr?.includes('cPassword')) { %>
+                                                            <div class="alert alert-danger my-2">
+                                                                in-valid confirmation password
+                                                            </div>
+                                                            <% } %>
+                                                                <div class="form-group my-2">
+                                                                    <button class="btn btn-info w-100"
+                                                                        type="submit">SignUp</button>
+                                                                    <br>
+                                                                    <div class="text-center">
+                                                                        <p>Already Have Account ?<a href="/login">signin
+                                                                                now</a></p>
+
+                                                                    </div>
+                                                                </div>
+            </form>
+
+
+        </div>
+    </section>
+    <%- include('./shared/footer')%>
